@@ -21,7 +21,8 @@ flowchart LR
         IAM
         IGW --> LB[Load balancer<br/>public, port 80]
 
-        subgraph VPC[VPC · public subnets] subgraph EKS[EKS cluster nginx-demo]
+        subgraph VPC[VPC · public subnets]
+            subgraph EKS[EKS cluster nginx-demo]
                 CM[ConfigMap<br/>index.html] --> Pods[nginx pods x2]
                 Node[Node group nginx-nodes<br/>2 x t3.small]
             end
