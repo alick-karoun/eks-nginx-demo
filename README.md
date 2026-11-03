@@ -31,8 +31,22 @@ flowchart LR
     end
 ```
 
-## Screenshot
-
+## Screenshots
+nginx running on EKS
 ![Nginx running on EKS](IMG_0023.png)
 
+the cluster
+![Cluster](IMG_0030.jpeg)
+
+nodes
+![nodes](IMG_0033.jpeg)
+
+IAM entries in the cluster
+![IAM entries in the cluster](IMG_0031.png)
+
+roles made for EKS
+![all roles made for eks](IMG_0029.jpeg)
+
+trust relationship
+![trust relationship](IMG_0034.png)
 
