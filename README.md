@@ -1,8 +1,11 @@
 # eks-nginx-demo
+![Deploy](https://github.com/alick-karoun/eks-nginx-demo/actions/workflows/deploy.yaml/badge.svg)
+
+
+
+
+
 ## Architecture
-
-#![Deploy](https://github.com/alick-karoun/eks-nginx-demo/actions/workflows/deploy.yaml/badge.svg)
-
 
 ```mermaid
 flowchart LR
@@ -27,4 +30,9 @@ flowchart LR
         LB --> Pods
     end
 ```
+
+## Screenshot
+
+![Nginx running on EKS](IMG_0023.png)
+
 
