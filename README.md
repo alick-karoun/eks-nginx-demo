@@ -1,20 +1,30 @@
 # eks-nginx-demo
 ## Architecture
 
+#![Deploy](https://github.com/alick-karoun/eks-nginx-demo/actions/workflows/deploy.yaml/badge.svg)
+
+
 ```mermaid
 flowchart LR
     Dev[Developer<br/>VS Code] -->|git push| Repo[GitHub repo]
-    Repo --> GHA[GitHub Actions]
-    GHA -->|OIDC| IAM[AWS IAM role]
-    IAM --> EKS
+    Repo --> GHA[GitHub Actions<br/>deploy.yaml]
+    GHA -->|OIDC token| IAM[AWS IAM role<br/>GitHubActionsEKSDeploy]
+    GHA -->|kubectl apply| EKS
 
-    subgraph AWS[AWS cloud]
+    User[Visitor browser] -->|HTTP :80| IGW[Internet gateway]
+
+    subgraph AWS[AWS cloud · eu-north-1]
         IAM
-        subgraph EKS[EKS cluster]
-            CM[ConfigMap<br/>index.html] --> Pods[nginx pods x2]
-        end
-        LB[Load balancer] --> Pods
-    end
+        IGW --> LB[Load balancer<br/>public, port 80]
 
-    User[Visitor browser] --> LB
+        subgraph VPC[VPC · public subnets]
+            subgraph EKS[EKS cluster nginx-demo]
+                CM[ConfigMap<br/>index.html] --> Pods[nginx pods x2]
+                Node[Node group nginx-nodes<br/>2 x t3.small]
+            end
+        end
+
+        LB --> Pods
+    end
 ```
+
